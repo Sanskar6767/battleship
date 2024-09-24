@@ -2,7 +2,7 @@ import '../assets/css/style.css';
 import * as canvas from './canvas';
 import { createHomePage } from './htmlmaker';
 
-import { newGame, preStart } from './gamestart';
+import { newGame, preStart, resetNewGame } from './gamestart';
 import { startGame, handleAttack } from './gamestart';
 
 export let WIN = false;
@@ -11,16 +11,23 @@ preStart();
 // startGame();
 
 export function alertWin() {
-    // const app = document.getElementById('app');
-    // app.innerHTML = '';
-    // // app.innerHTML = '';
-    // preStart();
+    setTimeout(function() {
+        resetNewGame(); 
+        const app = document.getElementById('app');
+        app.innerHTML = '';
+        preStart();   
+    
+    }, 5000);
 }
 
 // add event listener to the grid-board
 export function eventListener() {
     document.getElementById('grid-boardopponent').addEventListener('click', handleAttack);
 }
+
+// function removeAttackListener() {
+//     document.getElementById('grid-boardopponent').removeEventListener('click', handleAttack);
+// }
 
 export function writeMessage(message) {
     const messageDiv = document.createElement('div');
